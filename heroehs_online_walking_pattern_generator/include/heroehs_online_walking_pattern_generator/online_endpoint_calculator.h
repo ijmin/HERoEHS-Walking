@@ -11,6 +11,8 @@
 #include <boost/thread.hpp>
 #include "heroehs_online_walking_pattern_generator/online_pelvis_xy_calculator.h"
 
+
+
 namespace heroehs
 {
 
@@ -19,6 +21,10 @@ class OnlineEndpointCalculator
 public:
   OnlineEndpointCalculator();
   ~OnlineEndpointCalculator();
+
+  void readKinematicsYamlData_Endpoint();
+  double foot_pose_[6];
+  int alice_id_int_;
 
   void initialize(double lipm_height_m, double preview_time_sec, double control_time_sec);
   void reInitialize();

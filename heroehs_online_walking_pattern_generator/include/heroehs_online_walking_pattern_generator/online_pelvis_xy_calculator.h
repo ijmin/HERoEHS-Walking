@@ -9,7 +9,12 @@
 #define HEROEHS_ONLINE_WALKING_PATTERN_GENERATOR_ONLINE_PELVIS_XY_CALCULATOR_H_
 
 #include "robotis_math/robotis_math.h"
+
+#include <yaml-cpp/yaml.h>  // above scilab!!!! or error!!
+#include <ros/package.h>
+
 #include "scilab_optimization/scilab_optimization.h"
+
 
 namespace heroehs
 {
@@ -20,6 +25,8 @@ class OnlinePelvisXYCalculator
 public:
   OnlinePelvisXYCalculator();
   ~OnlinePelvisXYCalculator();
+
+  void readKinematicsYamlData_Pelvis();
 
   void initialize(double lipm_height_m, double preview_time_sec, double control_time_sec);
   void reInitialize(double lipm_height_m, double preview_time_sec, double control_time_sec);

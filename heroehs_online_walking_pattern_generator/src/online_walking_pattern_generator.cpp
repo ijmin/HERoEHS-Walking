@@ -14,6 +14,9 @@ OnlineWalkingPatternGenerator::OnlineWalkingPatternGenerator()
 {
   current_balancing_index_ = 0;
   switching_ratio_ = 0;
+
+  reference_foot_left_x_  = 0; reference_foot_left_y_  = 0; reference_foot_left_z_ = 0;
+  reference_foot_right_x_ = 0; reference_foot_right_y_ = 0; reference_foot_right_z_ = 0;
 }
 
 OnlineWalkingPatternGenerator::~OnlineWalkingPatternGenerator()
@@ -30,12 +33,31 @@ void OnlineWalkingPatternGenerator::process()
 {
   ep_calculator_.calcDesiredPose();
 
+
+// yitaek
+  reference_zmp_x_ = ep_calculator_.reference_zmp_x_.coeff(0);
+  reference_zmp_y_ = ep_calculator_.reference_zmp_y_.coeff(0);
+
   switching_ratio_ = ep_calculator_.switching_ratio_;
 
   current_balancing_index_ = ep_calculator_.current_balancing_index_;
 
   x_lipm_ = ep_calculator_.x_lipm_;
   y_lipm_ = ep_calculator_.y_lipm_;
+
+// yitaek
+  reference_body_x_ = x_lipm_.coeff(0);
+  reference_body_y_ = y_lipm_.coeff(0);
+
+  reference_foot_left_x_  = ep_calculator_.present_left_foot_pose_.x;
+  reference_foot_left_y_  = ep_calculator_.present_left_foot_pose_.y;
+  reference_foot_left_z_  = ep_calculator_.present_left_foot_pose_.z;
+  reference_foot_right_x_ = ep_calculator_.present_right_foot_pose_.x;
+  reference_foot_right_y_ = ep_calculator_.present_right_foot_pose_.y;
+  reference_foot_right_z_ = ep_calculator_.present_right_foot_pose_.z;
+
+
+//
 
   mat_g_to_rfoot_  = robotis_framework::getTransformationXYZRPY(ep_calculator_.present_right_foot_pose_.x, ep_calculator_.present_right_foot_pose_.y, ep_calculator_.present_right_foot_pose_.z,
       ep_calculator_.present_right_foot_pose_.roll, ep_calculator_.present_right_foot_pose_.pitch, ep_calculator_.present_right_foot_pose_.yaw);
@@ -54,7 +76,7 @@ void OnlineWalkingPatternGenerator::process()
   mat_robot_to_g_ = robotis_framework::getInverseTransformation(mat_g_to_robot_);
 }
 
-void OnlineWalkingPatternGenerator::start()
+void OnlineWalkingPatternGenerator::start()//ss
 {
   ep_calculator_.start();
 }

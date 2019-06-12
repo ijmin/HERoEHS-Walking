@@ -12,7 +12,8 @@ using namespace heroehs;
 
 OnlinePelvisXYCalculator::OnlinePelvisXYCalculator()
 {
-  lipm_height_m_ = 0.7;
+  //lipm_height_m_ = 0.7;
+  readKinematicsYamlData_Pelvis();
 
   control_time_sec_ = 0.008;
   preview_time_sec_ = 1.6;
@@ -28,6 +29,32 @@ OnlinePelvisXYCalculator::OnlinePelvisXYCalculator()
 
 OnlinePelvisXYCalculator::~OnlinePelvisXYCalculator()
 {  }
+
+
+void OnlinePelvisXYCalculator::readKinematicsYamlData_Pelvis()
+{
+
+  ros::NodeHandle nh;
+  int alice_id_int  = nh.param<int>("alice_userid",0);
+
+  std::stringstream alice_id_stream;
+  alice_id_stream << alice_id_int;
+  std::string alice_id = alice_id_stream.str();
+
+  std::string kinematics_path = ros::package::getPath("alice_kinematics_dynamics")+"/data/kin_dyn_"+alice_id+".yaml";
+  YAML::Node kinematics_doc;
+  try
+  {
+    kinematics_doc = YAML::LoadFile(kinematics_path.c_str());
+
+  }catch(const std::exception& e)
+  {
+    ROS_ERROR("Fail to load kinematics yaml file!");
+    return;
+  }
+  lipm_height_m_ = kinematics_doc["lipm_height_m"].as<double>();
+
+}
 
 void OnlinePelvisXYCalculator::initialize(double lipm_height_m, double preview_time_sec, double control_time_sec)
 {

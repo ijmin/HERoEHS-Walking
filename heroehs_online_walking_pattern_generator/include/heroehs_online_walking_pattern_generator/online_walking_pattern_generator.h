@@ -45,6 +45,11 @@ public:
 
   Eigen::Vector3d x_lipm_, y_lipm_;
 
+  double reference_zmp_x_,reference_zmp_y_;
+  double reference_body_x_,reference_body_y_;
+  double reference_foot_left_x_,reference_foot_left_y_,reference_foot_left_z_;
+  double reference_foot_right_x_,reference_foot_right_y_,reference_foot_right_z_;
+
 private:
   OnlineEndpointCalculator ep_calculator_;
 
