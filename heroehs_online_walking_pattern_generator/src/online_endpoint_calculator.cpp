@@ -45,11 +45,11 @@ OnlineEndpointCalculator::OnlineEndpointCalculator()
 
   present_right_foot_pose_.x = foot_pose_[0];    present_right_foot_pose_.y = -foot_pose_[1];
   present_right_foot_pose_.z = -foot_pose_[2];
-  present_right_foot_pose_.roll = foot_pose_[3]; present_right_foot_pose_.pitch = foot_pose_[4]; present_right_foot_pose_.yaw = foot_pose_[5];
+  present_right_foot_pose_.roll = foot_pose_[3]; present_right_foot_pose_.pitch = foot_pose_[4]; present_right_foot_pose_.yaw = foot_pose_[5]*M_PI/180;
 
   present_left_foot_pose_.x = foot_pose_[0];    present_left_foot_pose_.y = foot_pose_[1];
   present_left_foot_pose_.z = -foot_pose_[2];
-  present_left_foot_pose_.roll = foot_pose_[3]; present_left_foot_pose_.pitch = foot_pose_[4]; present_left_foot_pose_.yaw = foot_pose_[5];
+  present_left_foot_pose_.roll = foot_pose_[3]; present_left_foot_pose_.pitch = foot_pose_[4]; present_left_foot_pose_.yaw = foot_pose_[5]*M_PI/180;
 
   present_body_pose_.x = 0.0;    present_body_pose_.y = 0.0;     present_body_pose_.z = 0.0;
   present_body_pose_.roll = 0.0; present_body_pose_.pitch = 0.0; present_body_pose_.yaw = 0;
