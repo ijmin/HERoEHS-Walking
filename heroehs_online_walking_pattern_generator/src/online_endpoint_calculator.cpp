@@ -108,7 +108,7 @@ void OnlineEndpointCalculator::readKinematicsYamlData_Endpoint()
 
   ros::NodeHandle nh;
   alice_id_int_  = nh.param<int>("alice_userid",0);
-  ROS_INFO("ONLINE : %d",alice_id_int_);
+  ROS_INFO("HEROEHS-Walking::ONLINE ENDPOINT ID : %d",alice_id_int_);
   std::stringstream alice_id_stream;
   alice_id_stream << alice_id_int_;
   std::string alice_id = alice_id_stream.str();
