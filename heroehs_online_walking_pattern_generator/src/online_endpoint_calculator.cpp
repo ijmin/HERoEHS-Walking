@@ -329,7 +329,7 @@ void OnlineEndpointCalculator::calcStepIdxData()
       {
         step_idx_data_.fill(NO_STEP_IDX);
         current_step_data_status_ = StepDataStatus4;
-        //reInitialize();
+        reInitialize();
         running = false;
       }
       else
