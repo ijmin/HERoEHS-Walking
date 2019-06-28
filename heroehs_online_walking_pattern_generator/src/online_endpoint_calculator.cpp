@@ -1205,7 +1205,8 @@ void OnlineEndpointCalculator::calcDesiredPose()
   calcEndPoint();
   if(alice_id_int_==1)
   {
-    calcRefZMP();
+    calcSmoothRefZMP();
+    //calcRefZMP();
   }
   else if(alice_id_int_==2)
   {
